@@ -1,0 +1,15 @@
+{
+    "name": "bless.flyback/fpay",
+    "description": "funpay test case",
+    "autoload": {
+        "psr-4": {
+            "Flyback\\Fpay\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "mv"
+        }
+    ],
+    "require": {}
+}

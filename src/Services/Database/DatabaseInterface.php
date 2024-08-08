@@ -1,6 +1,8 @@
 <?php
 
-namespace FpDbTest;
+declare(strict_types=1);
+
+namespace Flyback\Fpay\Services\Database;
 
 interface DatabaseInterface
 {

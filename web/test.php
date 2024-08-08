@@ -1,24 +1,18 @@
 <?php
 
-use FpDbTest\Database;
-use FpDbTest\DatabaseTest;
+declare(strict_types=1);
 
-spl_autoload_register(function ($class) {
-    $a = array_slice(explode('\\', $class), 1);
-    if (!$a) {
-        throw new Exception();
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use Flyback\Fpay\Exceptions\Database\MySQLCloseException;
+use Flyback\Fpay\Services\DatabaseTester\DatabaseTesterService;
+
+try {
+    if (DatabaseTesterService::test()) {
+        exit('OK');
     }
-    $filename = implode('/', [__DIR__, ...$a]) . '.php';
-    require_once $filename;
-});
-
-$mysqli = @new mysqli('localhost', 'root', 'password', 'database', 3306);
-if ($mysqli->connect_errno) {
-    throw new Exception($mysqli->connect_error);
+} catch (Throwable $e) {
+    exit($e->getMessage());
 }
 
-$db = new Database($mysqli);
-$test = new DatabaseTest($db);
-$test->testBuildQuery();
-
-exit('OK');
+throw new MySQLCloseException();

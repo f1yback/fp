@@ -1,8 +1,10 @@
 <?php
 
-namespace FpDbTest;
+declare(strict_types=1);
 
-use Exception;
+namespace Flyback\Fpay\Services\Database;
+
+use Flyback\Fpay\Exceptions\DatabaseTesting\TestFailureException;
 
 class DatabaseTest
 {
@@ -13,6 +15,9 @@ class DatabaseTest
         $this->db = $db;
     }
 
+    /**
+     * @throws TestFailureException
+     */
     public function testBuildQuery(): void
     {
         $results = [];
@@ -51,7 +56,7 @@ class DatabaseTest
         ];
 
         if ($results !== $correct) {
-            throw new Exception('Failure.');
+            throw new TestFailureException();
         }
     }
 }
