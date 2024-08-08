@@ -1,0 +1,9 @@
+version: "3.9"
+name: "funpay"
+services:
+  app:
+    image: trafex/php-nginx
+    ports:
+      - "80:8080"
+    volumes:
+      - ./web:/var/www/html
